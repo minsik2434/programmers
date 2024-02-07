@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
-
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -13,17 +12,12 @@ public class Main {
         for(int i=1; i<=num; i++){
             queue.offer(i);
         }
-        int index = 1;
-        while (queue.size() != 1) {
-            long pow = (long) (Math.pow(index, 3) - 1);
-            long mod = pow % queue.size();
-
-            for (int i = 0; i < mod; i++) {
-                queue.add(queue.poll());
+        for(int i=1; i<num; i++){
+            long n = (long)(Math.pow(i,3)-1)%queue.size();
+            for(int j=0; j<n; j++){
+                queue.offer(queue.poll());
             }
             queue.poll();
-
-            index++;
         }
         System.out.println(queue.poll());
     }
