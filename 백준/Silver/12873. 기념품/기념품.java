@@ -18,10 +18,6 @@ public class Main {
             long pow = (long) (Math.pow(index, 3) - 1);
             long mod = pow % queue.size();
 
-            if (mod < 0) {
-                mod += queue.size();
-            }
-
             for (int i = 0; i < mod; i++) {
                 queue.add(queue.poll());
             }
