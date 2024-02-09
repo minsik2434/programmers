@@ -9,14 +9,14 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int num = Integer.parseInt(st.nextToken());
         int cut = Integer.parseInt(st.nextToken());
-        List<Integer> list = new ArrayList<>();
         st = new StringTokenizer(br.readLine());
+        int[] arr = new int[num];
         for(int i=0; i<num; i++){
-            list.add(Integer.parseInt(st.nextToken()));
+            arr[i] = Integer.parseInt(st.nextToken());
         }
-        Collections.sort(list);
-        Collections.reverse(list);
-        System.out.println(list.get(cut-1));
+        Arrays.sort(arr);
+
+        System.out.println(arr[num-cut]);
 
     }
 }
