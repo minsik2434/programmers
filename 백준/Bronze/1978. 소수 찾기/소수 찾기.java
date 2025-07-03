@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
+
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -14,30 +15,19 @@ public class Main {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        for(int i=0; i<arr.length; i++){
-            boolean b = eratosthenesSieve(arr[i]);
-            if(b){
+        for(int i=0; i<n; i++){
+            int j;
+            for(j=2; j<arr[i]; j++){
+                if(arr[i]%j==0){
+                    break;
+                }
+            }
+
+            if(j==arr[i]){
                 count++;
             }
         }
 
         System.out.println(count);
-    }
-    static boolean eratosthenesSieve(int n){
-        boolean[] prime = new boolean[n+1];
-
-        for(int i=2; i<=n; i++){
-            prime[i] = true;
-        }
-
-        for(int i=2; i*i <= n; i++){
-            if(prime[i]){
-                for(int j=i+i; j<=n; j+=i){
-                    prime[j] = false;
-                }
-            }
-        }
-
-        return prime[n];
     }
 }
