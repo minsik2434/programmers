@@ -1,25 +1,31 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuffer sb = new StringBuffer();
-        int n = Integer.parseInt(br.readLine());
-        int[] arr = new int[n];
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int count = 0;
-        for(int i=0; i<n; i++){
-            arr[i] = Integer.parseInt(st.nextToken());
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+        int size = stdIn.nextInt();
+        int[] arr = new int[size];
+        for(int i=0; i<size; i++){
+            arr[i] = stdIn.nextInt();
         }
-        int value = Integer.parseInt(br.readLine());
-        for(int i=0; i<n; i++){
-            if(arr[i] == value){
-                count++;
+
+        int searchNumber = stdIn.nextInt();
+
+        print(matchedNumber(searchNumber, arr));
+    }
+
+    static int matchedNumber(int number, int[] arr){
+        int sum = 0;
+        for(int i=0; i<arr.length; i++){
+            if(arr[i] == number){
+                sum ++;
             }
         }
-        System.out.println(count);
+        return sum;
     }
+
+    static void print(int result){
+        System.out.println(result);
+    }
+
 }
