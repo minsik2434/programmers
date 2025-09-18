@@ -1,29 +1,39 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
 public class Main {
-    static Queue<Integer> queue = new LinkedList<>();
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int[] solve = solve(n, m);
         StringBuffer sb = new StringBuffer();
-        String input = br.readLine();
-        String[] number = input.split(" ");
-        int N = Integer.parseInt(number[0]);
-        int K = Integer.parseInt(number[1]);
-        for(int i=1; i<=N; i++){
+
+        sb.append("<");
+        for(int i=0; i<solve.length; i++){
+            sb.append(solve[i]);
+            sb.append(", ");
+        }
+        sb.delete(sb.length()-2, sb.length());
+        sb.append(">");
+        System.out.println(sb);
+    }
+
+    static int[] solve(int n, int m){
+        Queue<Integer> queue = new LinkedList<>();
+        int[] arr = new int[n];
+        for(int i=1; i<=n; i++){
             queue.offer(i);
         }
-        for(int i=0; i<N-1; i++){
-            for(int j=0; j<K-1; j++){
-                int value = queue.poll();
-                queue.offer(value);
+
+        for(int i=0; i<=n-1; i++){
+            for(int j=0; j<m-1; j++){
+                queue.offer(queue.poll());
             }
-            sb.append(queue.poll()).append(", ");
+            arr[i] = queue.poll();
         }
-        sb.append(queue.poll()).append('>');
-        System.out.println("<"+sb);
+
+        return arr;
     }
 }
