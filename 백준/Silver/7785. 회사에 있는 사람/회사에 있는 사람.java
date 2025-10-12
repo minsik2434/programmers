@@ -1,15 +1,13 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Set<String> remaining = new HashSet<>();
+        Set<String> remaining = new LinkedHashSet<>();
         int n = sc.nextInt();
         for(int i=0; i<n; i++){
             String name = sc.next();
             String log = sc.next();
-
             if(log.equals("enter")){
                 remaining.add(name);
             } else{
@@ -17,10 +15,10 @@ public class Main {
             }
         }
 
-        LinkedHashSet<String> collect = remaining.stream().sorted(Comparator.reverseOrder())
-                .collect(Collectors.toCollection(LinkedHashSet::new));
+        ArrayList<String> result = new ArrayList<>(remaining);
+        result.sort(Comparator.reverseOrder());
 
-        for (String s : collect) {
+        for (String s : result) {
             System.out.println(s);
         }
     }
