@@ -20,6 +20,7 @@ public class Main {
                 if(sum - arr[i] - arr[j] == 100){
                     fake1 = i;
                     fake2 = j;
+                    break;
                 }
             }
         }
@@ -29,5 +30,6 @@ public class Main {
                 System.out.println(arr[i]);
             }
         }
+
     }
 }
