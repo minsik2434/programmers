@@ -1,27 +1,26 @@
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
         int n = sc.nextInt();
-        int count = 0;
-
+        int result;
         if(n < 100){
-            count = n;
+            result = n;
         } else {
-            count = 99;
-
-            for(int i=100; i<=n; i++){
-                int hun = i/100;
-                int ten = (i/10) % 10;
+            result = 99;
+            for(int i=100; i<n+1; i++){
+                int hun = i / 100;
+                int ten = (i/10)%10;
                 int one = i%10;
 
                 if((hun - ten) == (ten - one)){
-                    count++;
+                    result++;
                 }
             }
         }
 
-        System.out.println(count);
-
+        System.out.println(result);
     }
 }
