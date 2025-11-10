@@ -1,32 +1,41 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
-        int[] arr = new int[N];
+        String NMString = br.readLine();
+        StringTokenizer st = new StringTokenizer(NMString);
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        int[] arr = new int[n];
         st = new StringTokenizer(br.readLine());
-        int max = 0;
-        for(int i=0; i<N; i++){
+
+        for(int i=0; i<n; i++){
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        for(int i=0; i<N-2; i++){
-            int sum = 0;
-            for(int j=i+1; j<N-1; j++){
-                for(int k=j+1; k<N; k++){
+        int result = blackJack(m, arr);
+        System.out.println(result);
+    }
+
+    static int blackJack(int m, int[] arr){
+        int result = 0;
+        for(int i=0; i<arr.length; i++){
+            int sum;
+            for(int j=i+1; j<arr.length; j++){
+                for(int k=j+1; k<arr.length; k++){
                     sum = arr[i] + arr[j] + arr[k];
-                    if(sum <=M&&sum >= max){
-                        max = sum;
+
+                    if(sum <= m && sum > result){
+                        result = sum;
                     }
                 }
             }
         }
-        System.out.println(max);
+
+        return result;
     }
 }
