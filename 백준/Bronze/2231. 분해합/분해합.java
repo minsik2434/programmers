@@ -1,30 +1,31 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        int result = constructor(n);
+        System.out.println(result);
+    }
 
-        int n = sc.nextInt();
-        int i;
-        for(i = 1; i<=n; i++){
+    static int constructor(int n){
+        int result = 0;
+        for(int i=1; i<n; i++){
             int sum = i;
-            int iter = i;
-            while(iter>0){
-                int value = iter%10;
-                sum += value;
-                iter /= 10;
+            int value = i;
+            while(value > 0) {
+                sum += value%10;
+                value /= 10;
             }
-
-            if(sum == n){
+            
+            if (sum == n){
+                result = i;
                 break;
             }
         }
-
-        if(i >= n){
-            System.out.println(0);
-        } else {
-            System.out.println(i);
-        }
-
+        
+        return result;
     }
 }
