@@ -1,30 +1,37 @@
-import java.util.Scanner;
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt();
-        int[][] arr = new int[num][num];
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
-        for(int i=0; i<num; i++){
-            arr[i][0] = sc.nextInt();
-            arr[i][1] = sc.nextInt();
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+
+        int[][] arr = new int[n][n];
+
+        for(int i=0; i<n; i++){
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            arr[i][0] = Integer.parseInt(st.nextToken());
+            arr[i][1] = Integer.parseInt(st.nextToken());
         }
 
-        for(int i=0; i<num; i++){
-            int rating = 0;
-            for(int j=0; j<num; j++){
-                if(j==i){
+        for(int i=0; i<n; i++){
+            int rating = 1;
+            for(int j=0; j<n; j++){
+                if(i==j){
                     continue;
                 }
 
-                if(arr[i][0] < arr[j][0]){
-                    if(arr[i][1] < arr[j][1]){
+                if (arr[i][0] < arr[j][0]){
+                    if (arr[i][1] < arr[j][1]){
                         rating++;
                     }
                 }
             }
-            System.out.println(rating+1);
-        }
 
+            System.out.println(rating);
+        }
     }
 }
+
