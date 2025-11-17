@@ -6,11 +6,9 @@ public class Main {
         int n = sc.nextInt();
         String[] arr = new String[n];
         String[] arr2 = new String[n-1];
-        sc.nextLine();
         for(int i=0; i<n; i++){
             arr[i] = sc.next();
         }
-        sc.nextLine();
         for(int i=0; i<n-1; i++){
             arr2[i] = sc.next();
         }
@@ -28,4 +26,3 @@ public class Main {
         }
     }
 }
-
