@@ -1,18 +1,21 @@
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.HashSet;
+import java.util.Set;
 class Solution {
     public int solution(int[] nums) {
         int answer = 0;
-        Map<Integer, Integer> map = new HashMap<>();
-        for(int i=0; i<nums.length; i++) {
-            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+        Set<Integer> set = new HashSet<>();
+
+        for(int i=0; i< nums.length; i++) {
+            set.add(nums[i]);
         }
 
-        if (map.size() > nums.length/2) {
+        if(set.size() > nums.length/2) {
             answer = nums.length/2;
         } else {
-            answer = map.size();
+            answer = set.size();
         }
+
         return answer;
     }
 }
