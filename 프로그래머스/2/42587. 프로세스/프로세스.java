@@ -9,7 +9,6 @@ class Solution {
         for(int i=0; i< priorities.length; i++) {
             queue.offer(priorities[i]);
         }
-        
         //우선순위 큐가 모두 빌때까지 순회
         while(!queue.isEmpty()) {
             for(int i=0; i<priorities.length; i++) {
