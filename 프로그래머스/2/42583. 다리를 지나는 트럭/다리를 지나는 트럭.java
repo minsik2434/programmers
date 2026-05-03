@@ -9,7 +9,7 @@ class Solution {
         for(int i=0; i<bridge_length; i++) {
             bridgeQueue.offer(0);
         }
-            
+             
         while(truckIdx != truck_weights.length) {
             answer++;
             currentWeight -= bridgeQueue.poll();
