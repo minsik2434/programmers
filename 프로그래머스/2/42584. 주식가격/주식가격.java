@@ -11,7 +11,7 @@ class Solution {
             }
             stack.offerLast(i);
         }
-
+    
         while(!stack.isEmpty()) {
             Integer index = stack.pollLast();
             answer[index] = (prices.length - 1) - index;
