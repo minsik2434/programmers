@@ -8,10 +8,10 @@ class Solution {
         }
 
         while(queue.peek() < K) {
-            Integer first = queue.poll();
-            if (queue.isEmpty()) {
+            if (queue.size() < 2) {
                 return -1;
             }
+            Integer first = queue.poll();
             Integer second = queue.poll();
             int sum = first + second * 2;
             queue.offer(sum);
