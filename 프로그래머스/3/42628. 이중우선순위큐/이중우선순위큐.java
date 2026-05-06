@@ -1,8 +1,11 @@
 
 import java.util.*;
 class Solution {
- public int[] solution(String[] operations) {
-        TreeMap<Integer, Integer> map = new TreeMap<>();
+    public int[] solution(String[] operations) {
+        // 최솟값을 뽑아낼 큐 (Min Heap)
+        PriorityQueue<Integer> minPq = new PriorityQueue<>();
+        // 최댓값을 뽑아낼 큐 (Max Heap)
+        PriorityQueue<Integer> maxPq = new PriorityQueue<>(Collections.reverseOrder());
 
         for (String op : operations) {
             String[] split = op.split(" ");
@@ -10,25 +13,29 @@ class Solution {
             int value = Integer.parseInt(split[1]);
 
             if (command.equals("I")) {
-                //이미 있는 숫자면 개수 +1, 없으면 1로 초기화
-                map.put(value, map.getOrDefault(value, 0) + 1);
+                minPq.offer(value);
+                maxPq.offer(value);
             } else if (command.equals("D")) {
-                if (map.isEmpty()) continue;
-                int key = (value == 1) ? map.lastKey() : map.firstKey();
-                int count = map.get(key);
+                if (minPq.isEmpty()) continue;
 
-                if (count == 1) {
-                    map.remove(key);
+                if (value == 1) {
+                
+                    int max = maxPq.poll();
+               
+                    minPq.remove(max);
                 } else {
-                    map.put(key, count - 1);
+                 
+                    int min = minPq.poll();
+       
+                    maxPq.remove(min);
                 }
             }
         }
 
-        if (map.isEmpty()) {
-            return new int[] {0,0};
+        if (minPq.isEmpty()) {
+            return new int[]{0, 0};
         } else {
-            return new int[] {map.lastKey(), map.firstKey()};
+            return new int[]{maxPq.peek(), minPq.peek()};
         }
     }
 }
